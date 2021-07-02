@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item" @click="itemClick">
-    <img :src="goodItem.show.img" alt="" @load="iamgeLoad" />
+    <img :src="showImage" alt="" @load="imageLoad" />
     <div class="goods-info">
       <p>{{ goodItem.title }}</p>
       <span class="price">{{ goodItem.price }}</span>
@@ -17,11 +17,16 @@ export default {
   },
   components: {},
   methods: {
-    iamgeLoad() {
+    imageLoad() {
       this.$bus.$emit("itemImageLoad");
     },
     itemClick() {
       this.$router.push("/detail/" + this.goodItem.iid);
+    },
+  },
+  computed: {
+    showImage() {
+      return this.goodItem.image || this.goodItem.show.img;
     },
   },
   props: {

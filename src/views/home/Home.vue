@@ -48,7 +48,8 @@ import HomeFeature from "./childComps/HomeFuature.vue";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 
-import { debounce } from "common/utils";
+import { goodsListenerMixin } from "common/mixin";
+
 export default {
   name: "Home",
   data() {
@@ -90,19 +91,14 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh);
-    //3、监听图片加载完事件
-    this.$bus.$on("itemImageLoad", () => {
-      refresh();
-    });
-  },
+  mounted() {},
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
     this.$refs.scroll.refresh();
   },
   deactivated() {
     this.saveY = this.$refs.scroll.getScrollY();
+    this.$bus.$off("itemImageLoad", this.goodsImgListener);
   },
   methods: {
     /*
