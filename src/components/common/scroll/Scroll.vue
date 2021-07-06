@@ -44,9 +44,6 @@ export default {
         pullUpLoad: this.pullUpLoad,
         click: true,
       });
-      /* this.scroll.on("pullingUp", () => {
-        console.log(111);
-      }); */
       //监听滚动事件
       (this.probeType === 2 || this.probeType === 3) &&
         this.scroll.on("scroll", (position) => {

@@ -6,7 +6,7 @@
       class="recommend-item"
     >
       <a :href="item.link">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" @load="recommendImgLoad" />
         <div>{{ item.title }}</div>
       </a>
     </div>
@@ -20,7 +20,11 @@ export default {
     return {};
   },
   components: {},
-  methods: {},
+  methods: {
+    recommendImgLoad() {
+      this.$emit("recommendImgLoad");
+    },
+  },
   props: {
     recommends: {
       type: Array,

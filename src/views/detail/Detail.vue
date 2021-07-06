@@ -1,15 +1,17 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav-bar" />
-    <scroll class="content" ref="scroll">
+    <detail-nav-bar class="detail-nav-bar" @titleClick="titleClick" ref="nav" />
+    <scroll class="content" ref="scroll" :probeType="3" @scroll="contentScroll">
       <detail-swiper :top-images="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
       <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad" />
-      <detail-param-info :paramInfo="paramInfo" />
-      <detail-comment-info :comment-info="commentInfo" />
-      <good-list :goods="recommendInfo" />
+      <detail-param-info ref="param" :paramInfo="paramInfo" />
+      <detail-comment-info ref="comment" :comment-info="commentInfo" />
+      <good-list ref="list" :goods="recommendInfo" />
     </scroll>
+    <back-top @click.native="backClick" v-show="isBackTopShow" />
+    <detail-bottom-bar @addToCart="addToCart" />
   </div>
 </template>
 
@@ -21,10 +23,10 @@ import {
   GoodsParam,
   getRecommend,
 } from "network/detail";
-import { goodsListenerMixin } from "common/mixin";
+import { goodsListenerMixin, backTopMixin } from "common/mixin";
 
 import Scroll from "components/common/scroll/Scroll";
-import GoodsList from "components/content/goods/GoodList";
+import GoodList from "components/content/goods/GoodList";
 
 import DetailNavBar from "./childComs/DetailNavBar.vue";
 import DetailSwiper from "./childComs/DetailSwiper.vue";
@@ -33,7 +35,7 @@ import DetailShopInfo from "./childComs/DetailShopInfo.vue";
 import DetailGoodsInfo from "./childComs/DetailGoodsInfo.vue";
 import DetailParamInfo from "./childComs/DetailParamInfo.vue";
 import DetailCommentInfo from "./childComs/DetailCommentInfo.vue";
-import GoodList from "../../components/content/goods/GoodList.vue";
+import DetailBottomBar from "./childComs/DetailBottomBar.vue";
 
 export default {
   name: "Detail",
@@ -47,9 +49,11 @@ export default {
       paramInfo: {},
       commentInfo: {},
       recommendInfo: [],
+      themeTops: [],
+      currentIndex: 0,
     };
   },
-  mixins: [goodsListenerMixin],
+  mixins: [goodsListenerMixin, backTopMixin],
   created() {
     //保存传入的id
     this.iid = this.$route.params.iid;
@@ -84,7 +88,7 @@ export default {
   },
   components: {
     Scroll,
-    GoodsList,
+    GoodList,
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
@@ -92,11 +96,56 @@ export default {
     DetailGoodsInfo,
     DetailParamInfo,
     DetailCommentInfo,
-    GoodList,
+    DetailBottomBar,
   },
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh();
+      this.getThemeTops();
+    },
+    titleClick(index) {
+      this.$refs.scroll.scrollTo(0, -this.themeTops[index], 200);
+    },
+    //点击标签滚动对应部分
+    getThemeTops() {
+      this.themeTops = [0];
+      this.themeTops.push(this.$refs.param.$el.offsetTop);
+      this.themeTops.push(this.$refs.comment.$el.offsetTop);
+      this.themeTops.push(this.$refs.list.$el.offsetTop);
+    },
+    contentScroll(payload) {
+      let positionY = -payload.y;
+      let length = this.themeTops.length;
+      for (let i = 0; i < length; i++) {
+        if (
+          (this.currentIndex !== i &&
+            i < length - 1 &&
+            positionY >= this.themeTops[i] &&
+            positionY < this.themeTops[i + 1]) ||
+          (this.currentIndex !== i &&
+            i === length - 1 &&
+            positionY >= this.themeTops[i])
+        ) {
+          this.currentIndex = i;
+          this.$refs.nav.currentIndex = this.currentIndex;
+        }
+      }
+      this.isShowBackTop(payload);
+    },
+    addToCart() {
+      //获取购物车需要展示的信息
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.price = this.goods.realPrice;
+      product.iid = this.iid;
+      product.checked = true;
+
+      //将商品信息放在store中
+      this.$store.dispatch("getGoodsList", product).then((res) => {
+        this.$toast.show(res);
+      });
     },
   },
   mounted() {},
@@ -118,7 +167,7 @@ export default {
   top: 0.44rem;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0.49rem;
   z-index: 9;
   background: #fff;
 }

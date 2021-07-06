@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item" @click="itemClick">
-    <img :src="showImage" alt="" @load="imageLoad" />
+    <img v-lazy="showImage" alt="" @load="imageLoad" />
     <div class="goods-info">
       <p>{{ goodItem.title }}</p>
       <span class="price">{{ goodItem.price }}</span>
@@ -21,7 +21,7 @@ export default {
       this.$bus.$emit("itemImageLoad");
     },
     itemClick() {
-      this.$router.push("/detail/" + this.goodItem.iid);
+      this.goodItem.iid && this.$router.push("/detail/" + this.goodItem.iid);
     },
   },
   computed: {
@@ -53,9 +53,9 @@ export default {
 }
 
 .goods-info {
-  font-size: 12px;
+  font-size: 0.12rem;
   position: absolute;
-  bottom: 5px;
+  bottom: 0.05rem;
   left: 0;
   right: 0;
   overflow: hidden;
@@ -66,12 +66,12 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 3px;
+  margin-bottom: 0.03rem;
 }
 
 .goods-info .price {
   color: var(--color-high-text);
-  margin-right: 20px;
+  margin-right: 0.2rem;
 }
 
 .goods-info .collect {
@@ -81,10 +81,10 @@ export default {
 .goods-info .collect::before {
   content: "";
   position: absolute;
-  left: -15px;
+  left: -0.15rem;
   top: -1px;
-  width: 14px;
-  height: 14px;
-  background: url("~assets/img/common/collect.svg") 0 0/14px 14px;
+  width: 0.14rem;
+  height: 0.14rem;
+  background: url("~assets/img/common/collect.svg") 0 0/0.14rem 0.14rem;
 }
 </style>

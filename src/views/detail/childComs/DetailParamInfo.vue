@@ -37,9 +37,9 @@ export default {
 
 <style scoped>
 .param-info {
-  padding: 20px 15px;
-  font-size: 14px;
-  border-bottom: 5px solid #f2f5f8;
+  padding: 0.2rem 0.15rem;
+  font-size: 0.14rem;
+  border-bottom: 0.05rem solid #f2f5f8;
 }
 
 .param-info table {
@@ -48,7 +48,7 @@ export default {
 }
 
 .param-info table tr {
-  height: 42px;
+  height: 0.42rem;
 }
 
 .param-info table tr td {
@@ -57,7 +57,7 @@ export default {
 
 .info-param-key {
   /*当value的数据量比较大的时候, 会挤到key,所以给一个固定的宽度*/
-  width: 95px;
+  width: 0.95rem;
 }
 
 .info-param {

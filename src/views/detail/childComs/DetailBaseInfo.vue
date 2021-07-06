@@ -40,10 +40,10 @@ export default {
 
 <style scoped>
 .base-info {
-  margin-top: 15px;
-  padding: 0 8px;
+  margin-top: 0.15rem;
+  padding: 0 0.08rem;
   color: #999;
-  border-bottom: 5px solid #f2f5f8;
+  border-bottom: 0.05rem solid #f2f5f8;
 }
 
 .info-title {
@@ -51,38 +51,38 @@ export default {
 }
 
 .info-price {
-  margin-top: 10px;
+  margin-top: 0.1rem;
 }
 
 .info-price .n-price {
-  font-size: 24px;
+  font-size: 0.24rem;
   color: var(--color-high-text);
 }
 
 .info-price .o-price {
-  font-size: 13px;
-  margin-left: 5px;
+  font-size: 0.13rem;
+  margin-left: 0.05rem;
   text-decoration: line-through;
 }
 
 .info-price .discount {
-  font-size: 12px;
-  padding: 2px 5px;
+  font-size: 0.12rem;
+  padding: 0.02rem 0.05rem;
   color: #fff;
   background-color: var(--color-high-text);
   border-radius: 8px;
-  margin-left: 5px;
+  margin-left: 0.05rem;
 
   /*让元素上浮一些: 使用相对定位即可*/
   position: relative;
-  top: -8px;
+  top: -0.08rem;
 }
 
 .info-other {
-  margin-top: 15px;
-  line-height: 30px;
+  margin-top: 0.15rem;
+  line-height: 0.3rem;
   display: flex;
-  font-size: 13px;
+  font-size: 0.13rem;
   border-bottom: 1px solid rgba(100, 100, 100, 0.1);
   justify-content: space-between;
 }
@@ -90,18 +90,18 @@ export default {
 .info-service {
   display: flex;
   justify-content: space-between;
-  line-height: 60px;
+  line-height: 0.6rem;
 }
 
 .info-service-item img {
-  width: 14px;
-  height: 14px;
+  width: 0.14rem;
+  height: 0.14rem;
   position: relative;
-  top: 2px;
+  top: 0.02rem;
 }
 
 .info-service-item span {
-  font-size: 13px;
+  font-size: 0.13rem;
   color: #333;
 }
 </style>

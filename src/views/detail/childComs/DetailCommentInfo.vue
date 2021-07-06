@@ -56,72 +56,72 @@ export default {
 
 <style scoped>
 .comment-info {
-  padding: 5px 12px;
+  padding: 0.05rem 0.12rem;
   color: #333;
-  border-bottom: 5px solid #f2f5f8;
+  border-bottom: 0.05rem solid #f2f5f8;
 }
 
 .info-header {
-  height: 50px;
-  line-height: 50px;
+  height: 0.5rem;
+  line-height: 0.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header-title {
   float: left;
-  font-size: 15px;
+  font-size: 0.15rem;
 }
 
 .header-more {
   float: right;
-  margin-right: 10px;
-  font-size: 13px;
+  margin-right: 0.1rem;
+  font-size: 0.13rem;
 }
 
 .info-user {
-  padding: 10px 0 5px;
+  padding: 0.1rem 0 0.05rem;
 }
 
 .info-user img {
-  width: 42px;
-  height: 42px;
+  width: 0.42rem;
+  height: 0.42rem;
   border-radius: 50%;
 }
 
 .info-user span {
   position: relative;
-  font-size: 15px;
-  top: -15px;
-  margin-left: 10px;
+  font-size: 0.15rem;
+  top: -0.15rem;
+  margin-left: 0.1rem;
 }
 
 .info-detail {
-  padding: 0 5px 15px;
+  padding: 0 0.05rem 0.15rem;
 }
 
 .info-detail p {
-  font-size: 14px;
+  font-size: 0.14rem;
   color: #777;
   line-height: 1.5;
 }
 
 .info-detail .info-other {
-  font-size: 12px;
+  font-size: 0.12rem;
   color: #999;
-  margin-top: 10px;
+  margin-top: 0.1rem;
 }
 
 .info-other .date {
-  margin-right: 8px;
+  margin-right: 0.08rem;
 }
 
 .info-imgs {
-  margin-top: 10px;
+  margin-top: 0.1rem;
 }
 
 .info-imgs img {
-  width: 70px;
-  height: 70px;
-  margin-right: 5px;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.05rem;
 }
 </style>

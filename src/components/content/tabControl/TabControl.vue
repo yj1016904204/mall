@@ -53,12 +53,12 @@ export default {
   flex: 1;
 }
 .tab-control-item span {
-  padding: 5px;
+  padding: 0.05rem;
 }
 .active {
   color: var(--color-high-text);
 }
 .active span {
-  border-bottom: 3px solid var(--color-tint);
+  border-bottom: 0.03rem solid var(--color-tint);
 }
 </style>

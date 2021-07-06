@@ -21,7 +21,10 @@
         :swiperList="swiperList"
         @swiperImgaeLoad="swiperImgaeLoad"
       />
-      <home-recommend-view :recommends="recommends" />
+      <home-recommend-view
+        :recommends="recommends"
+        @recommendImgLoad="recommendImgLoad"
+      />
       <home-feature />
       <tab-control
         :titles="['流行', '新款', '精选']"
@@ -40,7 +43,6 @@ import NavBar from "components/common/navbar/NavBar";
 import Scroll from "components/common/scroll/Scroll";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goods/GoodList";
-import BackTop from "components/content/backTop/BackTop";
 
 import HomeSwiper from "./childComps/HomeSwiper.vue";
 import HomeRecommendView from "./childComps/HomeRecommendView.vue";
@@ -48,7 +50,7 @@ import HomeFeature from "./childComps/HomeFuature.vue";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 
-import { goodsListenerMixin } from "common/mixin";
+import { goodsListenerMixin, backTopMixin } from "common/mixin";
 
 export default {
   name: "Home",
@@ -62,12 +64,12 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      isBackTopShow: false,
       tabControlTop: 0,
       isTabControlFlex: false,
       saveY: 0,
     };
   },
+  mixins: [goodsListenerMixin, backTopMixin],
   computed: {
     showGoods() {
       return this.goods[this.currentType].list;
@@ -78,7 +80,6 @@ export default {
     Scroll,
     TabControl,
     GoodsList,
-    BackTop,
     HomeSwiper,
     HomeRecommendView,
     HomeFeature,
@@ -123,13 +124,13 @@ export default {
         this.$refs.scroll.scrollTo(0, -this.tabControlTop, 0);
     },
     //返回顶部
-    backClick() {
-      this.$refs.scroll.scrollTo(0, 0);
-    },
+    // backClick() {
+    //   this.$refs.scroll.scrollTo(0, 0);
+    // },
     //显示和隐藏返回顶部按钮
     contentScroll(payload) {
-      //对返回顶部按钮进行监听
-      this.isBackTopShow = -payload.y > 1000;
+      //对返回顶部按钮显示和隐藏进行监听
+      this.isShowBackTop(payload);
       //对tab选项卡下拉进行监听
       this.isTabControlFlex = -payload.y > this.tabControlTop;
     },
@@ -141,7 +142,10 @@ export default {
     swiperImgaeLoad() {
       this.tabControlTop = this.$refs.tabControl2.$el.offsetTop;
     },
-
+    //监听推荐图片是否加载完毕
+    recommendImgLoad() {
+      this.tabControlTop = this.$refs.tabControl2.$el.offsetTop;
+    },
     /*
      * 网络请求相关方法
      */
@@ -168,17 +172,13 @@ export default {
 
 <style scoped>
 #home {
-  /* padding-top: 0.44rem; */
   position: relative;
 }
 .home-nav {
   background: var(--color-tint);
   color: #fff;
   font-size: 0.16rem;
-  /* position: fixed;
-  left: 0;
-  right: 0;
-  top: 0; */
+
   z-index: 9;
 }
 

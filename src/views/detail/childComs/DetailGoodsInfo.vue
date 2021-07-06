@@ -51,17 +51,17 @@ export default {
 
 <style scoped>
 .goods-info {
-  padding: 20px 0;
-  border-bottom: 5px solid #f2f5f8;
+  padding: 0.2rem 0;
+  border-bottom: 0.05rem solid #f2f5f8;
 }
 
 .info-desc {
-  padding: 0 15px;
+  padding: 0 0.15rem;
 }
 
 .info-desc .start,
 .info-desc .end {
-  width: 90px;
+  width: 0.9rem;
   height: 1px;
   background-color: #a3a3a5;
   position: relative;
@@ -79,8 +79,8 @@ export default {
 .info-desc .end::after {
   content: "";
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 0.05rem;
+  height: 0.05rem;
   background-color: #333;
   bottom: 0;
 }
@@ -90,14 +90,14 @@ export default {
 }
 
 .info-desc .desc {
-  padding: 15px 0;
-  font-size: 14px;
+  padding: 0.15rem 0;
+  font-size: 0.14rem;
 }
 
 .info-key {
-  margin: 10px 0 10px 15px;
+  margin: 0.1rem 0 0.1rem 0.15rem;
   color: #333;
-  font-size: 15px;
+  font-size: 0.15rem;
 }
 
 .info-list img {
