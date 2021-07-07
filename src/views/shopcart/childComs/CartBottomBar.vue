@@ -35,7 +35,7 @@ export default {
       }
     },
     gotoBuys() {
-      this.$emit("gotoBuys", this.totalPrice);
+      this.getCartList.length && this.$emit("gotoBuys", this.totalPrice);
     },
   },
   computed: {

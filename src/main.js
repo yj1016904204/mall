@@ -4,8 +4,7 @@ import router from './router/index'
 import store from './store'
 import Toast from "components/common/toast"
 import VueLazyload from 'vue-lazyload'
-import axios from "axios";
-Vue.prototype.$axios = axios
+
 Vue.config.productionTip = false
 Vue.use(Toast)
 Vue.use(VueLazyload, {

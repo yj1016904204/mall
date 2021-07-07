@@ -52,7 +52,6 @@ export default {
       getUserInfo(token).then((res) => {
         if (res.code === 0) {
           this.userinfo = res.userinfo;
-          console.log(this.userinfo);
         } else {
           Toast.fail(res.msg);
         }
