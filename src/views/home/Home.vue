@@ -178,7 +178,6 @@ export default {
   background: var(--color-tint);
   color: #fff;
   font-size: 0.16rem;
-
   z-index: 9;
 }
 

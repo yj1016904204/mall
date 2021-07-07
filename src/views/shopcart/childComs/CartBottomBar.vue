@@ -7,7 +7,7 @@
     ></CheckButton>
     <span>全选</span>
     <span class="total-price">合计: ¥{{ totalPrice.toFixed(2) }}</span>
-    <span class="buy-product">去计算({{ cartLength }})</span>
+    <span class="buy-product" @click="gotoBuys">去计算({{ cartLength }})</span>
   </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
           item.checked = true;
         });
       }
+    },
+    gotoBuys() {
+      this.$emit("gotoBuys", this.totalPrice);
     },
   },
   computed: {

@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     showImage() {
-      return this.goodItem.image || this.goodItem.show.img;
+      return this.goodItem.img || this.goodItem.image || this.goodItem.show.img;
     },
   },
   props: {

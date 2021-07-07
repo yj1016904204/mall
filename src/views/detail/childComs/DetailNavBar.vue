@@ -32,11 +32,22 @@ export default {
   components: {
     NavBar,
   },
-
+  props: {
+    themeTops: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   methods: {
     titleClick(index) {
-      this.currentIndex = index;
-      this.$emit("titleClick", index);
+      if (this.themeTops.length !== 0) {
+        this.currentIndex = index;
+        this.$emit("titleClick", index);
+      } else {
+        this.$toast.show("请等待加载");
+      }
     },
     backClick() {
       this.$router.back();
