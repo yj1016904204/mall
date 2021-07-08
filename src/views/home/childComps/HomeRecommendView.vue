@@ -5,10 +5,8 @@
       :key="index"
       class="recommend-item"
     >
-      <a :href="item.link">
-        <img :src="item.image" alt="" @load="recommendImgLoad" />
-        <div>{{ item.title }}</div>
-      </a>
+      <img :src="item.image" alt="" @load="recommendImgLoad" />
+      <div>{{ item.title }}</div>
     </div>
   </div>
 </template>

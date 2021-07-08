@@ -1,7 +1,7 @@
 import axios from "axios"
 function login(config) {
   const instance = axios.create({
-    baseURL: "http://127.0.0.1:3721/api/v1",
+    baseURL: "http://120.24.80.67:3721/api/v1",
     timeout: 5000,
 
   })
