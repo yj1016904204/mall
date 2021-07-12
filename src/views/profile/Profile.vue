@@ -53,7 +53,7 @@ export default {
         if (res.code === 0) {
           this.userinfo = res.userinfo;
         } else {
-          Toast.fail(res.msg);
+          this.$toast.show(res.msg);
         }
       });
     }

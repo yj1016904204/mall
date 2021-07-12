@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-    <img src="~assets/img/login.webp" alt="" class="login-img" />
     <van-form @submit="onSubmit">
       <van-field
         v-model="mobile"
@@ -17,9 +16,9 @@
         placeholder="密码"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
-      <div style="margin: 16px">
+      <div>
         <van-button round block type="info" native-type="submit"
-          >提交</van-button
+          >登 录</van-button
         >
       </div>
     </van-form>
@@ -71,12 +70,44 @@ export default {
   left: 0;
   right: 0;
   z-index: 10;
-  background: #fff;
-  background: pink;
+  background-image: url(~assets/img/login.png);
+  background-size: cover;
 }
 .login-img {
   width: 100%;
   height: 2.5rem;
   margin-bottom: -2px;
+}
+
+.van-form {
+  margin-top: 90%;
+}
+
+.van-cell {
+  width: 80%;
+  margin: 0.1rem auto;
+  border-radius: 5px;
+  opacity: 0.4;
+}
+
+.van-field__label {
+  width: 3.2rem;
+  color: white;
+}
+
+.van-button--info {
+  color: #fff;
+  background-color: rgba(245, 192, 211, 0.4);
+  border: 1px solid rgb(139, 156, 202);
+}
+
+.van-button--round {
+  width: 0.9rem;
+  height: 0.9rem;
+  font-size: 0.18rem;
+  border-radius: 50%;
+  border: none;
+  background-image: linear-gradient(rgb(255, 141, 176), rgb(252, 50, 150));
+  margin: 0.3rem auto;
 }
 </style>
